@@ -26,20 +26,10 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
-mod 'puppetlabs/stdlib', '4.5.1'
-mod 'puppetlabs/inifile', '1.2.0'
-mod 'puppetlabs/concat', '2.1.0'
-mod 'puppetlabs/apt', '1.7.0'
-mod 'puppetlabs/ntp', '3.2.1'
-mod 'richardc/datacat', '0.6.1'
-mod 'puppetlabs/java_ks', '1.2.6'
-mod 'sensu/sensu', '1.5.0'
-mod 'maestrodev/wget', '1.5.7'
-mod 'arnoudj/sudo', '1.3.0'
-mod 'puppetlabs/xinetd', '1.5.0'
-mod 'camptocamp/hiera_undef', '1.1.15'
-mod 'camptocamp/systemd', '0.2.2'
-mod 'puppetlabs/mongodb', '0.11.0'
-mod 'willdurand/nodejs', '1.8.5'
-mod 'puppetlabs/vcsrepo', '1.3.2'
-mod 'ploperations/bundler', '1.0.1'
+mod 'puppetlabs/stdlib', :latest
+mod 'puppetlabs/apt', :latest
+mod 'camptocamp/systemd', :latest
+mod 'puppetlabs/mongodb', :latest
+mod 'willdurand/nodejs', :latest
+mod 'puppetlabs/vcsrepo', :latest
+mod 'ploperations/bundler', :latest
