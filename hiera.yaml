@@ -1,0 +1,17 @@
+# Hiera configuration.
+# This runs on the Puppet master, so any changes here will
+# only apply in the environment the master runs in (i.e. it
+# will need to go into the production branch). It will also
+# need a puppet run and the puppetserver may need restarting.
+---
+:hierarchy:
+  - "nodes/%{::clientcert}"
+  - common
+
+:backends:
+  - eyaml
+
+:eyaml:
+  :datadir: '/etc/puppet/hieradata'
+  :pkcs7_private_key: /etc/puppet/keys/private_key.pkcs7.pem
+  :pkcs7_public_key: /etc/puppet/keys/public_key.pkcs7.pem

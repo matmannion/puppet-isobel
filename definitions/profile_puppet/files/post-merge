@@ -1,0 +1,45 @@
+#!/bin/bash -e
+## Run Puppet locally using puppet apply
+cd /etc/puppet
+
+function assert_bundler_exists() {
+	if [[ ! `type -P bundle` ]]; then
+		echo '`bundle` not found - try `sudo gem install bundler`.'
+		exit 1
+	fi
+}
+
+function assert_bundler_gem_exists() {
+	GEM=$1
+	BUNDLEMSG=`bundle show ${GEM}`
+	if [[ $? != 0 ]]; then
+		echo "It looks like ${GEM} is missing or there is some other dependency problem - try `bundle install` first of all."
+		echo $BUNDLEMSG
+		exit 1
+	fi
+}
+
+assert_bundler_exists
+
+bundle install
+
+assert_bundler_gem_exists puppet
+
+bundle exec r10k puppetfile install
+
+bundle exec puppet apply \
+  --parser=future --ordering=manifest --trusted_node_data --no-stringify_facts \
+  --hiera_config=/etc/puppet/hiera.yaml \
+  --no-storeconfigs \
+  --modulepath=definitions:dist:modules \
+  /etc/puppet/manifests/site.pp
+
+## Log status of the Puppet run
+if [ $? -eq 0 ]
+then
+    /usr/bin/logger -i "Puppet has run successfully" -t "puppet-run"
+    exit 0
+else
+    /usr/bin/logger -i "Puppet has ran into an error, please run Puppet manually" -t "puppet-run"
+    exit 1
+fi
