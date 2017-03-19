@@ -27,7 +27,7 @@ assert_bundler_gem_exists puppet
 
 bundle exec r10k puppetfile install
 
-bundle exec puppet apply \
+bundle exec puppet apply --test \
   --parser=future --ordering=manifest --trusted_node_data --no-stringify_facts \
   --hiera_config=/etc/puppet/hiera.yaml \
   --no-storeconfigs \
