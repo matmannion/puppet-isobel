@@ -1,0 +1,57 @@
+/.tmp
+/vendor
+/dist/*/vendor
+/definitions/*/vendor
+/results
+.vagrant/
+*~
+*.tmp
+.*.swp
+.yardoc/
+.yardwarns
+
+# Exclude 3rd-party modules as they're fetched dynamically
+/modules
+/docs_modules
+/master/modules
+
+# Generated docs
+/docs/html
+
+# Hiera config is set up to check "local.eyaml"
+# last of all. It's only for data when testing
+# local changes, so it isn't kept in Git.
+/hieradata/local.eyaml
+
+# Exclude most fixture data as it's dynamically created
+**/spec/fixtures/*
+# But keep Hiera fixture data as it's not
+!**/spec/fixtures/hiera*
+# And keep mock modules in tests
+!**/spec/fixtures/mock_modules
+
+/test/var/*
+!/test/var/yaml
+
+# Ignore most Gemfile locks...
+Gemfile.lock
+# But keep the top level one so checkouts use consistent versions of things
+!/Gemfile.lock
+# Ignore in definitions too
+!/definitions/*/Gemfile.lock
+# Ignore in dist too
+!/dist/*/Gemfile.lock
+
+# This is super important so we don't accidentally commit the decrypting key.
+private*pem
+
+# IntelliJ IDE
+/.idea/*
+!/.idea/modules.xml
+*.iws
+
+# Eclipse IDE
+/.pydevproject
+
+.DS_Store
+.ruby-version
